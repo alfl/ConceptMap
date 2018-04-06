@@ -18,7 +18,7 @@ if len(sys.argv) == 2:
 if 'PORT' in os.environ:
 	port = int(os.environ['PORT'])
 
-url = 'http://concept-net.herokuapp.com/hello/url'
+url = 'http://context-map.herokuapp.com/hello/url'
 
 # Define API routes.
 @route('/hello/<name>')
