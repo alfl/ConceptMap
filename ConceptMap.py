@@ -13,7 +13,7 @@ def index(name):
 	return template('<b>Hello {{name}}</b>!', name=name)
 
 # Start webserver on a thread (not a process for Pythonista iOS security reasons).
-t = threading.Thread(target=run, kwargs={'host': 'localhost', 'port': os.environ[‘PORT’] })
+t = threading.Thread(target=run, kwargs={'host': 'localhost', 'port': os.environ['PORT'] })
 t.start()
 
 # Call the API.
