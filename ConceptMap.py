@@ -26,12 +26,13 @@ if 'HOST' in os.environ:
 	host = os.environ['HOST']
 
 # Start webserver on a thread (not a process for Pythonista iOS security reasons).
-t = threading.Thread(target=run, kwargs={'host': 'localhost', 'port': port })
-t.start()
+run(host=host, port=port)
+#t = threading.Thread(target=run, kwargs={'host': 'localhost', 'port': port })
+#t.start()
 
 # Call the API.
 #r = requests.request('GET', 'http://localhost:'+port+'/hello/python')
 #print(r.content)
 
 # Wait for the webserver thread to terminate.
-t.join()
+#t.join()
