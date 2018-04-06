@@ -18,7 +18,7 @@ if len(sys.argv) == 2:
 if 'PORT' in os.environ:
 	port = int(os.environ['PORT'])
 
-url = 'http://%s:%s/hello/url' % (host, port)
+url = 'http://localhost/hello/url'
 
 # Define API routes.
 @route('/hello/<name>')
