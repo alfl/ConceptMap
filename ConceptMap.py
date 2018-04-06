@@ -14,7 +14,7 @@ def index(name):
 	return template('<b>Hello {{name}}</b>!', name=name)
 
 port = 8080
-host = 'localhost'
+host = '0.0.0.0'
 
 if len(sys.argv) == 2:
 	port = int(sys.argv[1])
@@ -27,6 +27,9 @@ if 'HOST' in os.environ:
 
 # Start webserver on a thread (not a process for Pythonista iOS security reasons).
 run(host=host, port=port)
+
+print('hello')
+
 #t = threading.Thread(target=run, kwargs={'host': 'localhost', 'port': port })
 #t.start()
 
