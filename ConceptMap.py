@@ -10,11 +10,10 @@ import sys
 
 # Consts
 port = 8080
-host = '0.0.0.0'
+host = 'localhost'
 
 if len(sys.argv) == 2:
 	port = int(sys.argv[1])
-	host = 'localhost'
 
 if 'PORT' in os.environ:
 	port = int(os.environ['PORT'])
@@ -29,7 +28,7 @@ def index(name):
 # Start webserver on a thread (not a process for Pythonista iOS security reasons).
 #run(host=host, port=port)
 
-t = threading.Thread(target=run, kwargs={'host': host, 'port': port })
+t = threading.Thread(target=run, kwargs={'host': '0.0.0.0', 'port': port })
 t.start()
 
 while not t.is_alive():
