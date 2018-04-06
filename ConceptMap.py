@@ -8,11 +8,7 @@ import threading
 import os
 import sys
 
-# Define API routes.
-@route('/hello/<name>')
-def index(name):
-	return template('<b>Hello {{name}}</b>!', name=name)
-
+# Consts
 port = 8080
 host = '0.0.0.0'
 
@@ -21,21 +17,26 @@ if len(sys.argv) == 2:
 
 if 'PORT' in os.environ:
 	port = int(os.environ['PORT'])
-	
-if 'HOST' in os.environ:
-	host = os.environ['HOST']
+
+url = 'http://%s:%s/hello/url' % (host, port)
+
+# Define API routes.
+@route('/hello/<name>')
+def index(name):
+	return template('<b>Hello {{name}}</b>!', name=name)
 
 # Start webserver on a thread (not a process for Pythonista iOS security reasons).
-run(host=host, port=port)
+#run(host=host, port=port)
 
-print('hello')
+t = threading.Thread(target=run, kwargs={'host': host, 'port': port })
+t.start()
 
-#t = threading.Thread(target=run, kwargs={'host': 'localhost', 'port': port })
-#t.start()
+while not t.is_alive():
+	pass
 
 # Call the API.
-#r = requests.request('GET', 'http://localhost:'+port+'/hello/python')
-#print(r.content)
+r = requests.request('GET', url)
+print(r.content)
 
 # Wait for the webserver thread to terminate.
-#t.join()
+t.join()
