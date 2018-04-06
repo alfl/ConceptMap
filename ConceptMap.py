@@ -14,11 +14,12 @@ host = '0.0.0.0'
 
 if len(sys.argv) == 2:
 	port = int(sys.argv[1])
+	host = 'localhost'
 
 if 'PORT' in os.environ:
 	port = int(os.environ['PORT'])
 
-url = 'http://context-map.herokuapp.com/hello/url'
+url = 'http://%s:%s/hello/url' % (host, port)
 
 # Define API routes.
 @route('/hello/<name>')
