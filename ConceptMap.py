@@ -2,12 +2,12 @@
 # to maintain context by locating itself spatially within the map.
 from bottle import route, run, template
 import requests
-import threading
 
 # Built ins.
 import os
 import sys
 import time
+import threading
 
 # Consts
 host = 'localhost'
